@@ -1,12 +1,12 @@
 #include "vex.h"
 
-// ---- START VEXCODE CONFIGURED DEVICES ----
+// 
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // Belt                 motor         4               
 // Intake               motor         3               
 // Drivetrain           drivetrain    1, 2            
-// Controller1          controller                    
+            
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 using namespace vex;
@@ -235,6 +235,19 @@ void usercontrol(void) {
 
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
+    if(Controller1.ButtonL1.pressing()){
+      Intake.spin(fwd, 100, percent);
+      Belt.spin(fwd, 100, percent);
+    }else if(Controller1.ButtonR1.pressing()){
+      Intake.spin(reverse, 100, percent);
+      Belt.spin(reverse, 100, percent);
+    }else{
+      Intake.stop(hold);
+      Belt.stop(hold);
+    }
+
+
+
     chassis.control_tank();
 
     wait(20, msec); // Sleep the task for a short amount of time to
