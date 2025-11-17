@@ -2,11 +2,17 @@ using namespace vex;
 
 extern brain Brain;
 
-//To set up a motor called LeftFront here, you'd use
-//extern motor LeftFront;
+// VEXcode devices
+extern motor Belt;
+extern motor Intake;
+extern drivetrain Drivetrain;
+extern controller Controller1;
+extern motor LeftDriveSmart;
+extern motor RightDriveSmart;
 
-//Add your devices below, and don't forget to do the same in robot-config.cpp:
-
-
-
+/**
+ * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
+ * 
+ * This should be called at the start of your int main function.
+ */
 void  vexcodeInit( void );
