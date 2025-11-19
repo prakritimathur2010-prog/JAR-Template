@@ -16,3 +16,6 @@ extern motor RightDriveSmart;
  * This should be called at the start of your int main function.
  */
 void  vexcodeInit( void );
+void intake( void );
+void outtake( void );
+void stop ( void );

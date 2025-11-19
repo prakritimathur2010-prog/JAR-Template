@@ -224,31 +224,14 @@ void autonomous(void) {
 void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
-    // This is the main execution loop for the user control program.
-    // Each time through the loop your program should update motor + servo
-    // values based on feedback from the joysticks.
-
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to
-    // update your motors, etc.
-    // ........................................................................
-
-    //Replace this line with chassis.control_tank(); for tank drive 
-    //or chassis.control_holonomic(); for holo drive.
     if(Controller1.ButtonL1.pressing()){
-      Intake.spin(fwd, 100, percent);
-      Belt.spin(fwd, 100, percent);
+      intake();
     }else if(Controller1.ButtonR1.pressing()){
-      Intake.spin(reverse, 100, percent);
-      Belt.spin(reverse, 100, percent);
+      outtake();
     }else{
-      Intake.stop(hold);
-      Belt.stop(hold);
+      stop();
     }
-
-
-
-    chassis.control_tank();
+    chassis.control_arcade();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.

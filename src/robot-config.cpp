@@ -31,3 +31,19 @@ bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 void vexcodeInit( void ) {
   
 }
+
+// following functions are for intake and outtake, here so they can be used in autonomous and driver control
+void intake( void ) {
+    Belt.spin(fwd, 50, percent);
+    Intake.spin(fwd, 50, percent);
+}
+
+void outtake( void ) {
+    Intake.spin(reverse, 50, percent);
+    Belt.spin(reverse, 50, percent);
+}
+
+void stop ( void ) {
+    Intake.stop(hold);
+    Belt.stop(hold);
+}
