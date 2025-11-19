@@ -4,3 +4,4 @@ compile_commands.json
 .html
 .css
 /build
+/vscode
