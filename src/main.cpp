@@ -1,12 +1,12 @@
 #include "vex.h"
 
-// ---- START VEXCODE CONFIGURED DEVICES ----
+// 
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // Belt                 motor         4               
 // Intake               motor         3               
 // Drivetrain           drivetrain    1, 2            
-// Controller1          controller                    
+            
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 using namespace vex;
@@ -63,12 +63,12 @@ motor_group(RightDriveSmart),
 PORT9,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
-4,
+4.0,
 
 //External ratio, must be in decimal, in the format of input teeth/output teeth.
 //If your motor has an 84-tooth gear and your wheel has a 60-tooth gear, this value will be 1.4.
 //If the motor drives the wheel directly, this value is 1:
-0.6,
+1.0,
 
 //Gyro scale, this is what your gyro reads when you spin the robot 360 degrees.
 //For most cases 360 will do fine here, but this scale factor can be very helpful when precision is necessary.
@@ -235,7 +235,20 @@ void usercontrol(void) {
 
     //Replace this line with chassis.control_tank(); for tank drive 
     //or chassis.control_holonomic(); for holo drive.
-    chassis.control_arcade();
+    if(Controller1.ButtonL1.pressing()){
+      Intake.spin(fwd, 100, percent);
+      Belt.spin(fwd, 100, percent);
+    }else if(Controller1.ButtonR1.pressing()){
+      Intake.spin(reverse, 100, percent);
+      Belt.spin(reverse, 100, percent);
+    }else{
+      Intake.stop(hold);
+      Belt.stop(hold);
+    }
+
+
+
+    chassis.control_tank();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
